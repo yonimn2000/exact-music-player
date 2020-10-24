@@ -1,5 +1,6 @@
 ﻿using AxWMPLib;
 using System;
+using System.ComponentModel;
 using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
@@ -112,10 +113,30 @@ namespace YonatanMankovich.ExactMusicPlayer
             if (dialogResult == DialogResult.OK)
             {
                 Console.WriteLine("Folder selected.");
-                SelectFolderLink.Text = "Loading files...";
                 SelectFolderLink.Enabled = false;
                 Planner = new Planner();
-                Planner.AddMusicFilesFromDirectory(folderDialog.SelectedPath);
+                Planner.ReportProgressDelegate += PlannerProgressReport;
+                MusicLoaderBw.RunWorkerAsync();
+            }
+        }
+
+        private void PlannerProgressReport(int fileIndex, int totalFiles)
+        {
+            Invoke((MethodInvoker)delegate
+            {
+                SelectFolderLink.Text = $"Loading files {fileIndex + 1}/{totalFiles} ({Math.Round(100.0 * (fileIndex + 1) / totalFiles)}%)";
+            });
+        }
+
+        private void MusicLoaderBw_DoWork(object sender, DoWorkEventArgs e)
+        {
+            Planner.AddMusicFilesFromDirectory(folderDialog.SelectedPath);
+        }
+
+        private void MusicLoaderBw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            Invoke((MethodInvoker)delegate
+            {
                 SelectFolderLink.Text = folderDialog.SelectedPath;
                 SelectFolderLink.Enabled = true;
                 UpdatePlaylist(false);
@@ -128,7 +149,7 @@ namespace YonatanMankovich.ExactMusicPlayer
                     Properties.Settings.Default.OpenFolder = folderDialog.SelectedPath;
                     Properties.Settings.Default.Save();
                 }
-            }
+            });
         }
     }
 }

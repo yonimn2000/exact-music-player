@@ -36,6 +36,7 @@
             this.SelectFolderLink = new System.Windows.Forms.LinkLabel();
             this.folderDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.PlayingUntilLbl = new System.Windows.Forms.Label();
+            this.MusicLoaderBw = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.MediaPlayer)).BeginInit();
             this.SuspendLayout();
             // 
@@ -107,6 +108,12 @@
             this.PlayingUntilLbl.TabIndex = 5;
             this.PlayingUntilLbl.Text = "Playing until: -----------------------------";
             // 
+            // MusicLoaderBw
+            // 
+            this.MusicLoaderBw.WorkerReportsProgress = true;
+            this.MusicLoaderBw.DoWork += new System.ComponentModel.DoWorkEventHandler(this.MusicLoaderBw_DoWork);
+            this.MusicLoaderBw.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.MusicLoaderBw_RunWorkerCompleted);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -138,6 +145,7 @@
         private System.Windows.Forms.LinkLabel SelectFolderLink;
         private System.Windows.Forms.FolderBrowserDialog folderDialog;
         private System.Windows.Forms.Label PlayingUntilLbl;
+        private System.ComponentModel.BackgroundWorker MusicLoaderBw;
     }
 }
 
