@@ -41,20 +41,21 @@
             // 
             // MediaPlayer
             // 
+            this.MediaPlayer.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.MediaPlayer.Enabled = true;
-            this.MediaPlayer.Location = new System.Drawing.Point(13, 68);
+            this.MediaPlayer.Location = new System.Drawing.Point(0, 81);
             this.MediaPlayer.Name = "MediaPlayer";
             this.MediaPlayer.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("MediaPlayer.OcxState")));
-            this.MediaPlayer.Size = new System.Drawing.Size(247, 62);
+            this.MediaPlayer.Size = new System.Drawing.Size(272, 63);
             this.MediaPlayer.TabIndex = 0;
             this.MediaPlayer.PlayStateChange += new AxWMPLib._WMPOCXEvents_PlayStateChangeEventHandler(this.MediaPlayer_PlayStateChange);
             this.MediaPlayer.PositionChange += new AxWMPLib._WMPOCXEvents_PositionChangeEventHandler(this.MediaPlayer_PositionChange);
             // 
             // PlayUntilDtp
             // 
-            this.PlayUntilDtp.CustomFormat = "MM/dd/yyyy H:mm:ss";
+            this.PlayUntilDtp.CustomFormat = "MM/dd/yyyy h:mm:ss tt";
             this.PlayUntilDtp.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.PlayUntilDtp.Location = new System.Drawing.Point(59, 27);
+            this.PlayUntilDtp.Location = new System.Drawing.Point(62, 12);
             this.PlayUntilDtp.Name = "PlayUntilDtp";
             this.PlayUntilDtp.Size = new System.Drawing.Size(159, 20);
             this.PlayUntilDtp.TabIndex = 1;
@@ -63,15 +64,16 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 29);
+            this.label1.Location = new System.Drawing.Point(10, 15);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(49, 13);
+            this.label1.Size = new System.Drawing.Size(52, 13);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Play until";
+            this.label1.Text = "Play until:";
             // 
             // SkipBtn
             // 
-            this.SkipBtn.Location = new System.Drawing.Point(224, 26);
+            this.SkipBtn.Enabled = false;
+            this.SkipBtn.Location = new System.Drawing.Point(227, 11);
             this.SkipBtn.Name = "SkipBtn";
             this.SkipBtn.Size = new System.Drawing.Size(37, 23);
             this.SkipBtn.TabIndex = 3;
@@ -82,7 +84,7 @@
             // SelectFolderLink
             // 
             this.SelectFolderLink.AutoSize = true;
-            this.SelectFolderLink.Location = new System.Drawing.Point(10, 9);
+            this.SelectFolderLink.Location = new System.Drawing.Point(10, 36);
             this.SelectFolderLink.Name = "SelectFolderLink";
             this.SelectFolderLink.Size = new System.Drawing.Size(66, 13);
             this.SelectFolderLink.TabIndex = 4;
@@ -98,7 +100,8 @@
             // PlayingUntilLbl
             // 
             this.PlayingUntilLbl.AutoSize = true;
-            this.PlayingUntilLbl.Location = new System.Drawing.Point(10, 50);
+            this.PlayingUntilLbl.Enabled = false;
+            this.PlayingUntilLbl.Location = new System.Drawing.Point(10, 59);
             this.PlayingUntilLbl.Name = "PlayingUntilLbl";
             this.PlayingUntilLbl.Size = new System.Drawing.Size(156, 13);
             this.PlayingUntilLbl.TabIndex = 5;
@@ -108,7 +111,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(272, 141);
+            this.ClientSize = new System.Drawing.Size(272, 144);
             this.Controls.Add(this.PlayingUntilLbl);
             this.Controls.Add(this.SelectFolderLink);
             this.Controls.Add(this.SkipBtn);
@@ -120,7 +123,6 @@
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.Text = "Exact Music Player";
-            this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.MediaPlayer)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
